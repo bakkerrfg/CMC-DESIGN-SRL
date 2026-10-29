@@ -1,579 +1,127 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="it" data-lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMC DESIGN SRL | Premium Services & Software</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0b0f19;
-            --surface-color: rgba(20, 27, 45, 0.6);
-            --surface-border: rgba(255, 255, 255, 0.08);
-            --accent-color: #00f0ff;
-            --accent-hover: #00c3d9;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glow: 0 0 20px rgba(0, 240, 255, 0.4);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.05), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.08), transparent 25%);
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-        }
-
-        /* Навигация */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(11, 15, 25, 0.8);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--surface-border);
-            z-index: 1000;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .css-logo {
-            width: 32px;
-            height: 32px;
-            border: 2px solid var(--accent-color);
-            border-radius: 8px;
-            position: relative;
-            transform: rotate(45deg);
-            box-shadow: var(--glow);
-        }
-
-        .css-logo::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12px;
-            height: 12px;
-            background: var(--accent-color);
-            border-radius: 50%;
-        }
-
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .nav-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Общие стили секций */
-        section {
-            padding: 6rem 5%;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(to right, #fff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        /* Главный экран */
-        .hero {
-            flex-direction: row;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 60px;
-        }
-
-        .hero-content {
-            flex: 1;
-            max-width: 600px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
-        }
-
-        .btn:hover {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            box-shadow: var(--glow);
-        }
-
-        .hero-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Анимация радара (чистый CSS) */
-        .radar {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            background: 
-                linear-gradient(90deg, transparent 49.5%, rgba(0, 240, 255, 0.2) 49.5%, rgba(0, 240, 255, 0.2) 50.5%, transparent 50.5%),
-                linear-gradient(0deg, transparent 49.5%, rgba(0, 240, 255, 0.2) 49.5%, rgba(0, 240, 255, 0.2) 50.5%, transparent 50.5%);
-        }
-
-        .radar::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            background: conic-gradient(from 0deg, transparent 70%, rgba(0, 240, 255, 0.4) 100%);
-            transform-origin: 0 0;
-            animation: scan 4s linear infinite;
-        }
-
-        @keyframes scan {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Операции */
-        .operations-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--surface-color);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.1);
-        }
-
-        .card-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(0, 240, 255, 0.1);
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            position: relative;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-        }
-
-        /* Блок мобильного приложения */
-        .software-section {
-            background: linear-gradient(180deg, var(--bg-color) 0%, rgba(10, 20, 35, 0.8) 100%);
-            flex-direction: row;
-            align-items: center;
-            gap: 4rem;
-        }
-
-        .software-text {
-            flex: 1;
-        }
-
-        .software-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .software-text p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-        }
-
-        .store-badge {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: #fff;
-            color: #000;
-            border-radius: 8px;
-            font-weight: 600;
-            margin-top: 1rem;
-            text-decoration: none;
-        }
-
-        .software-visual {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Мокап смартфона на чистом CSS */
-        .phone-mockup {
-            width: 280px;
-            height: 560px;
-            background: #000;
-            border: 12px solid #1f2937;
-            border-radius: 40px;
-            position: relative;
-            box-shadow: 20px 20px 40px rgba(0,0,0,0.5), 0 0 20px rgba(0, 240, 255, 0.2);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .phone-notch {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 25px;
-            background: #1f2937;
-            border-bottom-left-radius: 16px;
-            border-bottom-right-radius: 16px;
-            z-index: 2;
-        }
-
-        .phone-screen {
-            flex: 1;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 40px 20px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .ui-header {
-            height: 40px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 8px;
-            margin-bottom: 10px;
-        }
-
-        .ui-card {
-            height: 80px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-        }
-
-        .ui-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            margin: 10px auto;
-        }
-
-        /* Реестр и Контакты */
-        .registry-section {
-            flex-direction: row;
-            gap: 4rem;
-        }
-
-        .company-data, .contact-form {
-            flex: 1;
-            background: var(--surface-color);
-            border: 1px solid var(--surface-border);
-            border-radius: 16px;
-            padding: 3rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .data-item {
-            margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding-bottom: 0.5rem;
-        }
-        
-        .data-item:last-child {
-            border-bottom: none;
-        }
-
-        .data-label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .data-value {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .contact-form form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(0,0,0,0.3);
-            border: 1px solid var(--surface-border);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: inherit;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        /* Подвал */
-        footer {
-            background: #05080f;
-            padding: 3rem 5%;
-            border-top: 1px solid var(--surface-border);
-            text-align: center;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent-color);
-        }
-
-        .copyright {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        @media (max-width: 900px) {
-            .hero, .software-section, .registry-section {
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links {
-                display: none; /* Для простоты на мобильных скрываем */
-            }
-            .hero-visual {
-                margin-top: 3rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CMC DESIGN SRL — Interior Design a Pozzallo</title>
+<meta name="description" content="CMC DESIGN SRL, Pozzallo (RG): progettazione di interni, arredi su misura e direzione lavori. Interior design, bespoke furnishing and project management in Sicily.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <nav>
-        <div class="logo-container">
-            <div class="css-logo"></div>
-            <div class="logo-text">CMC DESIGN</div>
-        </div>
-        <div class="nav-links">
-            <a href="#operations">Operations</a>
-            <a href="#software">Software Publishing</a>
-            <a href="#registry">Registry</a>
-        </div>
-    </nav>
+<section class="hero" style="padding:0">
+  <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000&q=75" alt="Interno moderno / Modern interior">
+  <div class="wrap">
+    <span class="eyebrow" style="color:#e8dfd0"><span class="it">Interior Design · Pozzallo, Sicilia</span><span class="en">Interior Design · Pozzallo, Sicily</span></span>
+    <h1><span class="it">Spazi che<br>raccontano chi sei.</span><span class="en">Spaces that<br>tell who you are.</span></h1>
+    <p><span class="it">Progettiamo interni essenziali, luminosi e senza tempo, curando ogni dettaglio dal primo schizzo alla consegna.</span><span class="en">We design essential, light-filled, timeless interiors, caring for every detail from the first sketch to handover.</span></p>
+    <a href="#contact" class="btn"><span class="it">Richiedi un incontro</span><span class="en">Request a consultation</span></a>
+  </div>
+</section>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Building the Future of Digital & Hardware Services</h1>
-            <p>CMC DESIGN SRL — независимая компания, предоставляющая высококлассные услуги по разработке ПО и техническому обслуживанию. Инновации, упакованные в премиальный дизайн.</p>
-            <a href="#software" class="btn">Explore Software</a>
-        </div>
-        <div class="hero-visual">
-            <div class="radar"></div>
-        </div>
-    </section>
+<section id="about">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow"><span class="it">Lo Studio</span><span class="en">The Studio</span></span>
+      <h2><span class="it">Il design come equilibrio tra forma e vita quotidiana.</span><span class="en">Design as a balance between form and everyday life.</span></h2>
+      <p class="lead"><span class="it">CMC DESIGN SRL è uno studio di progettazione con sede a Pozzallo. Lavoriamo su abitazioni private, strutture ricettive e spazi commerciali, con un approccio sobrio: materiali autentici, luce naturale e arredi pensati per durare.</span><span class="en">CMC DESIGN SRL is a design studio based in Pozzallo. We work on private homes, hospitality venues and commercial spaces with a restrained approach: honest materials, natural light and furniture made to last.</span></p>
+      <div class="stats">
+        <div><b>360°</b><span class="it">Dal concept al cantiere</span><span class="en">Concept to site</span></div>
+        <div><b>100%</b><span class="it">Su misura</span><span class="en">Tailor-made</span></div>
+        <div><b>1:1</b><span class="it">Referente dedicato</span><span class="en">Dedicated contact</span></div>
+      </div>
+    </div>
+    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1000&q=75" alt="Soggiorno luminoso / Bright living room" loading="lazy">
+  </div>
+</section>
 
-    <section id="operations">
-        <h2 class="section-title">Core Operations</h2>
-        <div class="operations-grid">
-            <div class="card">
-                <div class="card-icon"></div>
-                <h3>Software Development</h3>
-                <p>Проектирование, разработка и публикация мобильных и веб-приложений. Создаем стабильные решения для бизнеса и повседневного использования.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon"></div>
-                <h3>Hardware Maintenance</h3>
-                <p>Профессиональный ремонт и обслуживание бытовых и персональных устройств с гарантией качества и надежности.</p>
-            </div>
-            <div class="card">
-                <div class="card-icon"></div>
-                <h3>UI/UX Design</h3>
-                <p>Создание премиальных пользовательских интерфейсов. От прототипирования до финальной графики с упором на Glassmorphism и минимализм.</p>
-            </div>
-        </div>
-    </section>
+<section id="services" class="services">
+  <div class="wrap">
+    <span class="eyebrow"><span class="it">Servizi</span><span class="en">Services</span></span>
+    <h2><span class="it">Cosa facciamo</span><span class="en">What we do</span></h2>
+    <div class="grid3">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=75" alt="Progettazione interni" loading="lazy">
+        <h3><span class="it">Progettazione d'interni</span><span class="en">Interior design</span></h3>
+        <p><span class="it">Concept, planimetrie, render 3D e capitolati per abitazioni e spazi commerciali.</span><span class="en">Concept, floor plans, 3D renders and specifications for homes and commercial spaces.</span></p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=75" alt="Arredi su misura" loading="lazy">
+        <h3><span class="it">Arredi su misura</span><span class="en">Bespoke furniture</span></h3>
+        <p><span class="it">Cucine, armadi e complementi disegnati per lo spazio e realizzati da artigiani selezionati.</span><span class="en">Kitchens, wardrobes and fittings designed for the space and built by selected craftsmen.</span></p>
+      </div>
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=75" alt="Direzione lavori" loading="lazy">
+        <h3><span class="it">Direzione lavori</span><span class="en">Project management</span></h3>
+        <p><span class="it">Coordinamento di imprese e fornitori, controllo di tempi e costi fino alla consegna.</span><span class="en">Coordination of contractors and suppliers, with control of schedule and budget through to handover.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <section id="software" class="software-section">
-        <div class="software-text">
-            <h2>Mobile Software Publishing</h2>
-            <p>Как официальный разработчик в Google Play Console, мы специализируемся на издании кроссплатформенных приложений. Наши продукты отличаются высокой производительностью, безопасностью данных и интуитивно понятным дизайном.</p>
-            <p>Мы постоянно расширяем наше портфолио, выпуская утилиты и сервисные приложения, которые упрощают повседневные задачи пользователей.</p>
-            <a href="#" class="store-badge">Developer Profile on Google Play</a>
-        </div>
-        <div class="software-visual">
-            <div class="phone-mockup">
-                <div class="phone-notch"></div>
-                <div class="phone-screen">
-                    <div class="ui-header"></div>
-                    <div class="ui-circle"></div>
-                    <div class="ui-card"></div>
-                    <div class="ui-card" style="opacity: 0.7;"></div>
-                    <div class="ui-card" style="opacity: 0.4;"></div>
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow"><span class="it">Progetti</span><span class="en">Projects</span></span>
+    <h2><span class="it">Selezione di lavori</span><span class="en">Selected work</span></h2>
+    <div class="gallery">
+      <a><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=75" alt="Progetto 1" loading="lazy"></a>
+      <a><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=75" alt="Progetto 2" loading="lazy"></a>
+      <a><img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=800&q=75" alt="Progetto 3" loading="lazy"></a>
+      <a><img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=800&q=75" alt="Progetto 4" loading="lazy"></a>
+      <a><img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=800&q=75" alt="Progetto 5" loading="lazy"></a>
+      <a><img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1200&q=75" alt="Progetto 6" loading="lazy"></a>
+    </div>
+  </div>
+</section>
 
-    <section id="registry" class="registry-section">
-        <div class="company-data">
-            <h2 style="margin-bottom: 2rem;">Company Identity & Registry</h2>
-            <div class="data-item">
-                <div class="data-label">Legal Name</div>
-                <div class="data-value">CMC DESIGN SRL</div>
-            </div>
-            <div class="data-item">
-                <div class="data-label">Key Principal</div>
-                <div class="data-value">SEBASTIAN CIFALI</div>
-            </div>
-            <div class="data-item">
-                <div class="data-label">Address</div>
-                <div class="data-value">VIA ANDREA SIGONA 161/B, POZZALLO, RAGUSA, 97016 Italy</div>
-            </div>
-            <div class="data-item">
-                <div class="data-label">Industry</div>
-                <div class="data-value">Personal and Household Goods Repair / Software Publishing</div>
-            </div>
-            <div class="data-item">
-                <div class="data-label">Official Email</div>
-                <div class="data-value">info@cmc-design.cfd</div>
-            </div>
-        </div>
+<section id="process" style="background:var(--card)">
+  <div class="wrap">
+    <span class="eyebrow"><span class="it">Metodo</span><span class="en">Process</span></span>
+    <h2><span class="it">Come lavoriamo</span><span class="en">How we work</span></h2>
+    <div class="steps">
+      <div><i>01</i><h3><span class="it">Ascolto</span><span class="en">Listening</span></h3><p><span class="it">Sopralluogo e briefing per capire esigenze, abitudini e budget.</span><span class="en">Site visit and briefing to understand needs, habits and budget.</span></p></div>
+      <div><i>02</i><h3>Concept</h3><p><span class="it">Moodboard, layout e prime visualizzazioni 3D.</span><span class="en">Moodboards, layouts and first 3D visualisations.</span></p></div>
+      <div><i>03</i><h3><span class="it">Progetto</span><span class="en">Design</span></h3><p><span class="it">Disegni esecutivi, scelta di materiali e fornitori.</span><span class="en">Technical drawings, selection of materials and suppliers.</span></p></div>
+      <div><i>04</i><h3><span class="it">Realizzazione</span><span class="en">Delivery</span></h3><p><span class="it">Supervisione del cantiere e consegna chiavi in mano.</span><span class="en">Site supervision and turnkey handover.</span></p></div>
+    </div>
+  </div>
+</section>
 
-        <div class="contact-form">
-            <h2 style="margin-bottom: 2rem;">Contact Us</h2>
-            <form>
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Business Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="btn" style="width: 100%; text-align: center;">Send Message</button>
-            </form>
-        </div>
-    </section>
+<section class="cta">
+  <div class="wrap">
+    <h2><span class="it">Hai un progetto in mente?</span><span class="en">Have a project in mind?</span></h2>
+    <p class="lead"><span class="it">Raccontaci il tuo spazio: ti risponderemo per fissare un primo incontro.</span><span class="en">Tell us about your space and we will get back to you to arrange a first meeting.</span></p>
+    <a href="#contact" class="btn"><span class="it">Scrivici</span><span class="en">Get in touch</span></a>
+  </div>
+</section>
 
-    <footer>
-        <div class="footer-links">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-            <a href="#">GDPR Compliance</a>
-            <a href="#">Data Deletion Request</a>
-            <a href="#">Google Play Publisher Status</a>
-        </div>
-        <div class="copyright">
-            &copy; 2026 CMC DESIGN SRL. All rights reserved. Private Independent Entity.
-        </div>
-    </footer>
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="info">
+        <span class="eyebrow"><span class="it">Contatti</span><span class="en">Contact</span></span>
+        <h2><span class="it">Parliamone</span><span class="en">Let's talk</span></h2>
+        <p><small><span class="it">Sede</span><span class="en">Office</span></small>CMC DESIGN SRL<br>Via Andrea Sigona 161/B<br>97016 Pozzallo (RG)<br><span class="it">Italia</span><span class="en">Italy</span></p>
+        <p><small><span class="it">Orari</span><span class="en">Opening hours</span></small><span class="it">Lun – Ven, 9:00 – 18:00<br>Su appuntamento</span><span class="en">Mon – Fri, 9:00 – 18:00<br>By appointment</span></p>
+      </div>
+      <div>
+        <form id="cf">
+          <input type="text" name="name" required placeholder="Nome e cognome / Full name">
+          <input type="email" name="email" required placeholder="Email">
+          <input type="text" name="subject" placeholder="Oggetto / Subject">
+          <textarea name="message" required placeholder="Messaggio / Message"></textarea>
+          <label class="check"><input type="checkbox" required><span><span class="it">Ho letto l'<a href="privacy.html">informativa privacy</a> e acconsento al trattamento dei miei dati per rispondere alla richiesta.</span><span class="en">I have read the <a href="privacy.html">privacy policy</a> and consent to my data being processed to reply to my request.</span></span></label>
+          <button class="btn dark" type="submit"><span class="it">Invia richiesta</span><span class="en">Send request</span></button>
+        </form>
+        <div class="ok" id="ok"><span class="it">Grazie, la tua richiesta è stata inviata. Ti risponderemo il prima possibile.</span><span class="en">Thank you, your request has been sent. We will reply as soon as possible.</span></div>
+      </div>
+    </div>
+    <div class="map"><iframe loading="lazy" title="Mappa" src="https://www.google.com/maps?q=Via+Andrea+Sigona+161/B,+97016+Pozzallo&output=embed"></iframe></div>
+  </div>
+</section>
 
+<script src="script.js"></script>
 </body>
 </html>
